@@ -46,6 +46,24 @@ public class Tasks implements TaskListContract {
     public void deleteTask(int id) {
         var task = getTaskById(id);
         if (task != null) {
+            if (task.getPredecessors() != null) {
+                for (int predecessor :
+                        task.getPredecessors()) {
+                    Task pred = getTaskById(predecessor);
+                    if (pred != null) {
+                        pred.removeSuccessor(task.getId());
+                    }
+                }
+            }
+            if (task.getSuccessors() != null) {
+                for (int successor :
+                        task.getSuccessors()) {
+                    Task succ = getTaskById(successor);
+                    if (succ != null) {
+                        succ.removePredecessor(task.getId());
+                    }
+                }
+            }
             tasks.remove(task);
         }
     }

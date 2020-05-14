@@ -58,11 +58,19 @@ public class Task {
     }
 
     public ArrayList<Integer> getPredecessors() {
-        return new ArrayList<>(predecessors);
+        if (predecessors != null) {
+            return new ArrayList<>(predecessors);
+        }
+        else
+            return null;
     }
 
     public ArrayList<Integer> getSuccessors() {
-        return new ArrayList<>(successors);
+        if (successors != null) {
+            return new ArrayList<>(successors);
+        }
+        else
+            return null;
     }
 
     public String getImportance() {

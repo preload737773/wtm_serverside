@@ -49,6 +49,7 @@ public class TaskDataManager implements DataManager {
         if (task != null) {
             tasks.editTask(task.getId(), task.getName(), task.getDescription(), task.getNotificationDate(), task.getImportance());
             JsonIO.writeToJsonFile(fileName, tasks);
+            return true;
         }
         return false;
     }
